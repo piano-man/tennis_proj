@@ -1,7 +1,40 @@
 <html>
-    <head>
-    </head>
-    <body>
-        <p>Hello</p>
-    </body>
+
+<head>
+    <html>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="{{url_for('static',filename="index.css")}}">-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+      <script type="text/javascript" src="{{url_for('static',filename="main.js")}}"></script>
+
+  <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="/schedule">Schedule</a></li>
+                    <li role="presentation"><a href="/players">Players</a></li>
+                    <li role="presentation"><a href="/rankings">Rankings</a></li>
+                </ul>
+            </div>
+            <div class="row">
+                <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Enable Push Messaging
+      </button>
+            </div>
+        </div>
+    </header>
+
+    {% block body%} {% endblock %}
+</body>
+
 </html>

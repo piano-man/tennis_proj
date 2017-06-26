@@ -5,5 +5,12 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 __init__.py	__init__.py	1;"	kind:file	line:1
-app	__init__.py	/^app=Flask(__name__)$/;"	kind:variable	line:4
-index	__init__.py	/^def index():$/;"	kind:function	line:7
+a	init2.py	/^a = requests.get("http:\/\/games.espn.com\/fba\/scoreboard?leagueId=224165&seasonId=2017")$/;"	kind:variable	line:3
+app	__init__.py	/^app=Flask(__name__)$/;"	kind:variable	line:6
+index	__init__.py	/^def index():$/;"	kind:function	line:11
+init2.py	init2.py	1;"	kind:file	line:1
+rows	init2.py	/^rows = soup.findAll('tr', {'class': 'linescoreTeamRow'})$/;"	kind:variable	line:6
+schedule	__init__.py	/^def schedule():$/;"	kind:function	line:20
+socfunc	__init__.py	/^def socfunc(json):$/;"	kind:function	line:15
+socketio	__init__.py	/^socketio = SocketIO(app)$/;"	kind:variable	line:8
+soup	init2.py	/^soup = BeautifulSoup(a.text, 'lxml')$/;"	kind:variable	line:4
