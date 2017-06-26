@@ -1,9 +1,12 @@
 from lxml import html
 from bs4 import BeautifulSoup
 import requests
+import ast
 from flask import Flask,render_template
 from flask_socketio import SocketIO
-app=Flask(__name__)
+from pywebpush import webpush
+
+app=Flask(__name__,static_url_path='')
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
@@ -13,7 +16,20 @@ def index():
 
 @socketio.on('subscription_id')
 def socfunc(json):
+    print("event received")
     print(json)
+    print(type(json))
+    if json!="":
+            y = ast.literal_eval(json)
+            print(y)
+            webpush(y,
+                    data="hello",
+                    vapid_private_key="BJhrKdfEX8iXbMrgnHA8vgBwcKCQ4zhYii-g2pGt_LqrDufvux9NIORwP_WHec119BxflFDUEBxVJBv6AZSPmKY",
+                    vapid_claims={"sub": "mailto:icm2015003@iiita.ac.in"})
+
+
+   
+    
 
 
 @app.route('/schedule')

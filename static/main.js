@@ -21,7 +21,7 @@
 
 'use strict';
 
-const applicationServerPublicKey = 'BBOZ1UsxDLrmEnIGjWm0M46msU6YJnxKKJkLi955iBEGnuFp_TwLY4KJRjzkQbrMF0jlqkZfeQAnI7oddQ4RhsI';
+const applicationServerPublicKey = 'BFsChuKAMQ2eWAdIhHT22s2OWDY_iS8XbYc2OCJ3GqcXtzABy4ud5p6vu3f_e7LSIVk8NuRe2zX6jEPMXfqFP_E';
 
 const pushButton = document.querySelector('.js-push-btn');
 
@@ -47,7 +47,7 @@ function urlB64ToUint8Array(base64String) {
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   console.log('Service Worker and Push is supported');
 
-  navigator.serviceWorker.register('../static/sw.js')
+  navigator.serviceWorker.register('sw.js')
     .then(function (swReg) {
       console.log('Service Worker is registered', swReg);
 
@@ -109,7 +109,7 @@ function updateBtn() {
 
   pushButton.disabled = false;
 }
-navigator.serviceWorker.register('../static/sw.js')
+navigator.serviceWorker.register('sw.js')
   .then(function (swReg) {
     console.log('Service Worker is registered', swReg);
 
@@ -148,6 +148,7 @@ function updateSubscriptionOnServer(subscription) {
     subscriptionJson.textContent = JSON.stringify(subscription);
     subscriptionDetails.classList.remove('is-invisible');
   } else {
+    subscriptionJson.textContent = "";
     subscriptionDetails.classList.add('is-invisible');
   }
 }

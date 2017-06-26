@@ -9,8 +9,10 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+  <script src="https://cdn.socket.io/socket.io-1.4.0.js"></script>
+  <script src="{{url_for('static',filename="jquery.js")}}"></script>
   <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename="index.css")}}">
 </head>
 
 <body>
@@ -23,7 +25,7 @@
     <p>Welcome to the push messaging codelab. The button below needs to be
     fixed to support subscribing to push.</p>
     <p>
-      <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+      <button disabled onClick="hello()" class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
         Enable Push Messaging
       </button>
     </p>
@@ -35,12 +37,33 @@
       into the <a href="https://web-push-codelab.appspot.com/">Push Companion
       Site</a> and it'll send a push message for you, using the application
       server keys on the site - so make sure they match.</p>
-      <pre><code class="js-subscription-json"></code></pre>
+      <pre ><code id="ele" class="js-subscription-json"></code></pre>
     </section>
   </main>
 
   <script type="text/javascript" src="{{url_for('static',filename="main.js")}}"></script>
 
   <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <script>
+ 
+     
+     function hello(){
+         console.log("clicked")
+         var socket = io.connect("http://localhost:5000")
+         setTimeout(delay,1000)
+         function delay(){
+       console.log(document.getElementById("ele").innerHTML);
+       var x =document.getElementById("ele").innerHTML
+       socket.emit("subscription_id",x)
+     }
+    }
+
+          
+       
+ 
+
+      
+
+  </script>
 </body>
 </html>
