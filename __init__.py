@@ -19,17 +19,6 @@ socketio = SocketIO(app)
 def index():
     return render_template("try.html")
 
-@app.route('/players')
-def players():
-    return render_template("try.html")
-
-@app.route('/index')
-def ind():
-    return render_template("index.html")
-
-@app.route('/notification')
-def fn():
-    print(y)
     
 
 @socketio.on('subscription_id')
@@ -89,6 +78,33 @@ def schedule():
 
     return render_template('schedule.html',tables=curretable,tables2=curretable2)
 
+@app.route('/rankings')
+def rankings():
+    page = requests.get("http://www.espn.com/tennis/rankings")
+    soup = BeautifulSoup(page.content,'html.parser')
+    soup.prettify()
+    tables = soup.find_all("table")
+    arr= tables[0].find_all("tr")[2:]
+    l = len(arr)
+    curretable3=[[] for i in range(l)]
+    #print(curretable3)
+    #print(l)
+    index2=0
+    for tr in tables[0].find_all("tr")[2:]: 
+            tds = tr.find_all("td")
+            print(tds[3].find_all('div'))
+            curretable3[index2].append(tds[0].text)
+            curretable3[index2].append(tds[1].text)
+            curretable3[index2].append(tds[2].img['src'])
+            curretable3[index2].append(tds[3].find_all('div')[1].text)
+            curretable3[index2].append(tds[4].text)
+            curretable3[index2].append(tds[1].a['href'])
+            curretable3[index2].append(tds[3].find_all('div')[0].img['src'])
+            index2+=1
+    print(curretable3)
+    return render_template('rankings.html',tables3=curretable3)
+
+    
 
 
 if __name__=="__main__":

@@ -1,0 +1,35 @@
+{% extends "try.html" %}
+{% block body %}
+
+{%  if tables3|length>0  %}
+<div class="row">
+<div class="col-md-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Singles Rankings</td>
+            </tr>
+            <tr>
+                <td>Rank</td>
+                <td>Player</td>
+                <td>Country</td>
+                <td>Movement</td>
+                <td>Points</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tr in tables3 %}
+            <tr>
+                <td>{{tr[0]}}</td>
+                <td><a href={{tr[5]}}>{{tr[1]}}</a></td>
+                <td><img src={{tr[2]}}></td>
+                <td><div><img src={{tr[6]}}></div><div>{{tr[3]}}</div></td>
+                <td>{{tr[4]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endif %}
+{% endblock %}
