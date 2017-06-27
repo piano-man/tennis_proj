@@ -1,18 +1,60 @@
 from lxml import html
 from bs4 import BeautifulSoup
+from datetime import datetime
 import requests
 import ast
+import threading
 from flask import Flask,render_template
 from flask_socketio import SocketIO
 from pywebpush import webpush
 #from solidwebpush import Pusher
+print("hello")
 
+def notif():
+    print("working")
+    hours = datetime.now().strftime("%H")
+    print(hours)
+    minutes = datetime.now().strftime("%M")
+    seconds = datetime.now().strftime("%S")
+    page = requests.get("http://www.espn.com/tennis/schedule")
+    soup = BeautifulSoup(page.content,'html.parser')
+    soup.prettify()
+    tables = soup.find_all("table")
+    currtable = tables[0].find_all("tr")[2:]
+    curretable=[]
+    for tr in tables[0].find_all("tr")[2:]:
+        tds = tr.find_all("td")
+        curretable.append(tds[1].text)
+
+    print(curretable)
+    if hours == "01":
+        print("time to send a notification")
+        print(y)
+        webpush(y,
+                    data=str(curretable),
+                    vapid_private_key="tgX_vQz113iCfMtdEW41oaLQFyKb3fjP4x4nkDw0AMs",
+                    vapid_claims={"sub": "mailto:icm2015003@iiita.ac.in","aud":"https://fcm.googleapis.com"})
+
+
+    
+    
+    
 app=Flask(__name__,static_url_path='')
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
+
+def set_interval(func, sec):
+    def func_wrapper():
+        set_interval(func, sec)
+        func()
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+    return t
 #pusher = Pusher()
 #print(pusher.getUrlB64PublicKey())
+
+set_interval(notif,15)
 
 
 @app.route('/')
@@ -31,10 +73,10 @@ def socfunc(json):
             global y 
             y = ast.literal_eval(json)
             print(y)
-            webpush(y,
-                    data="hello",
-                    vapid_private_key="tgX_vQz113iCfMtdEW41oaLQFyKb3fjP4x4nkDw0AMs",
-                    vapid_claims={"sub": "mailto:icm2015003@iiita.ac.in","aud":"https://fcm.googleapis.com"})
+            #webpush(y,
+             #       data="hello",
+              #      vapid_private_key="tgX_vQz113iCfMtdEW41oaLQFyKb3fjP4x4nkDw0AMs",
+               #     vapid_claims={"sub": "mailto:icm2015003@iiita.ac.in","aud":"https://fcm.googleapis.com"})
 
 
    
