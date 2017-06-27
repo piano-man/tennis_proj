@@ -5,14 +5,28 @@ import ast
 from flask import Flask,render_template
 from flask_socketio import SocketIO
 from pywebpush import webpush
+#from solidwebpush import Pusher
 
 app=Flask(__name__,static_url_path='')
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
+#pusher = Pusher()
+#print(pusher.getUrlB64PublicKey())
+
+
 @app.route('/')
 def index():
     return render_template("try.html")
+
+@app.route('/index')
+def ind():
+    return render_template("index.html")
+
+@app.route('/notification')
+def fn():
+    print(y)
+    
 
 @socketio.on('subscription_id')
 def socfunc(json):
@@ -20,11 +34,13 @@ def socfunc(json):
     print(json)
     print(type(json))
     if json!="":
+        #pusher.sendNotification(json, "Hello World")
+            global y 
             y = ast.literal_eval(json)
             print(y)
             webpush(y,
                     data="hello",
-                    vapid_private_key="BJhrKdfEX8iXbMrgnHA8vgBwcKCQ4zhYii-g2pGt_LqrDufvux9NIORwP_WHec119BxflFDUEBxVJBv6AZSPmKY",
+                    vapid_private_key="tgX_vQz113iCfMtdEW41oaLQFyKb3fjP4x4nkDw0AMs",
                     vapid_claims={"sub": "mailto:icm2015003@iiita.ac.in"})
 
 
@@ -44,7 +60,7 @@ def schedule():
         print("Date: %s, Name: %s, Location: %s"%(tds[0].text, tds[1].text, tds[2].text))
 
 
-    return render_template("index.html")
+    return render_template("schedule.html",)
 
 
 
