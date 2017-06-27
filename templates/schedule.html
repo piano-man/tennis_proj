@@ -1,2 +1,30 @@
 {% extends "try.html" %} {% block body %}
 
+{%  if tables|length>0  %}
+<div class="col-md-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Current Tournaments</td>
+            </tr>
+            <tr>
+                <td>DATE</td>
+                <td>NAME</td>
+                <td>LOCATION</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tr in tables %}
+            <tr>
+                <td>{{tr[0]}}</td>
+                <td>{{tr[1]}}</td>
+                <td>{{tr[2]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+
+{% endblock %}
