@@ -67,10 +67,27 @@ def schedule():
         curretable[index].append(tds[0].text)
         curretable[index].append(tds[1].text)
         curretable[index].append(tds[2].text)
+        curretable[index].append(tds[1].a['href'])
         index+=1
-    print(curretable)    
+    print(curretable) 
 
-    return render_template('schedule.html',tables=curretable)
+    arr= tables[2].find_all("tr")[2:]
+    l = len(arr)
+    curretable2=[[] for i in range(l)]
+    print(curretable2)
+    print(l)
+    inde=0
+    for tr in tables[2].find_all("tr")[2:]: 
+            tds = tr.find_all("td")
+            curretable2[inde].append(tds[0].text)
+            curretable2[inde].append(tds[1].text)
+            curretable2[inde].append(tds[2].text)
+            curretable2[inde].append(tds[1].a['href'])
+            inde+=1
+    print(curretable2)
+
+
+    return render_template('schedule.html',tables=curretable,tables2=curretable2)
 
 
 
