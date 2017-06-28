@@ -27,7 +27,7 @@ def notif():
         curretable.append(tds[1].text)
 
     print(curretable)
-    if hours == "01":
+    if hours == "20":
         print("time to send a notification")
         print(y)
         webpush(y,

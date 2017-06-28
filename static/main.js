@@ -32,6 +32,17 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
       console.log('Service Worker is registered', swReg);
 
       swRegistration = swReg;
+      swRegistration.pushManager.getSubscription()
+    .then(function (subscription) {
+  const subscriptionJson = document.querySelector('.js-subscription-json');
+  const subscriptionDetails =
+    document.querySelector('.js-subscription-details');
+
+  if (subscription) {
+    subscriptionJson.textContent = JSON.stringify(subscription);
+    subscriptionDetails.classList.remove('is-invisible');
+  } 
+    })
     })
     .catch(function (error) {
       console.error('Service Worker Error', error);
@@ -152,3 +163,5 @@ function unsubscribeUser() {
       updateBtn();
     });
 }
+
+  
