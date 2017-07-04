@@ -8,7 +8,8 @@ from flask import Flask,render_template
 from flask_socketio import SocketIO
 from pywebpush import webpush
 #from solidwebpush import Pusher
-print("hello")
+
+y=[]
 
 def notif():
     print("working")
@@ -27,10 +28,13 @@ def notif():
         curretable.append(tds[1].text)
 
     print(curretable)
-    if hours == "20":
+    if hours == "00":
         print("time to send a notification")
-        print(y)
-        webpush(y,
+        if y:
+            print(y[0])
+            m = ast.literal_eval(y[0]['endpoint'])
+            print(m)
+            webpush(m,
                     data=str(curretable),
                     vapid_private_key="tgX_vQz113iCfMtdEW41oaLQFyKb3fjP4x4nkDw0AMs",
                     vapid_claims={"sub": "mailto:icm2015003@iiita.ac.in","aud":"https://fcm.googleapis.com"})
@@ -71,7 +75,8 @@ def socfunc(json):
     if json!="":
         #pusher.sendNotification(json, "Hello World")
             global y 
-            y = ast.literal_eval(json)
+            #y = ast.literal_eval(json.endpoint)
+            y.append(json)
             print(y)
             #webpush(y,
              #       data="hello",

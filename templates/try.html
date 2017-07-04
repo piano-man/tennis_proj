@@ -8,6 +8,7 @@
 
   <title>All things tennis</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -48,24 +49,38 @@
 
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 <script>
+var loc
 
 
                                          function hello() {
+                                             $.getJSON('http://ipinfo.io', function(data){
+      console.log("get request")
+    loc = data;
+});
                                            console.log("clicked")
                                            var socket = io.connect("http://localhost:5000")
                                            setTimeout(delay, 1000)
                                            function delay() {
                                              console.log(document.getElementById("ele").innerHTML);
                                              var x = document.getElementById("ele").innerHTML
-                                             socket.emit("subscription_id", x)
+                                             socket.emit("subscription_id", {
+                                             "endpoint":x,
+                                             "location":loc.country
+                                            })
                                            }
                                          }
 
 
   </script>
   <script>
+  var loci
   window.onload= function() {
     console.log("onload works")
+    $.getJSON('http://ipinfo.io', function(data){
+      console.log("get request")
+    console.log(data);
+    loci=data
+});
     var socket = io.connect("http://localhost:5000")
    //var t = $('.js-push-btn').text();
     //console.log(t)
@@ -75,7 +90,14 @@
     
       console.log(document.getElementById("ele").innerHTML);
       var x = document.getElementById("ele").innerHTML
-      socket.emit("subscription_id", x)
+      if(x!="")
+      {
+
+      
+      socket.emit("subscription_id", {
+      "endpoint":x,
+    "location":loci.country})
+      }
     
   }
   }

@@ -4,15 +4,30 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CertInstallCommand	get-pip.py	/^    class CertInstallCommand(InstallCommand):$/;"	kind:class	line:87
 __init__.py	__init__.py	1;"	kind:file	line:1
+_b85alphabet	get-pip.py	/^    _b85alphabet = (b"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"$/;"	kind:variable	line:43
 a	init2.py	/^a = requests.get("http:\/\/games.espn.com\/fba\/scoreboard?leagueId=224165&seasonId=2017")$/;"	kind:variable	line:3
-app	__init__.py	/^app=Flask(__name__,static_url_path='')$/;"	kind:variable	line:9
-fn	__init__.py	/^def fn():$/;"	kind:function	line:23
-ind	__init__.py	/^def ind():$/;"	kind:function	line:19
-index	__init__.py	/^def index():$/;"	kind:function	line:15
+app	__init__.py	/^app=Flask(__name__,static_url_path='')$/;"	kind:variable	line:43
+args	get-pip.py	/^        args = sys.argv[1:]$/;"	kind:variable	line:108
+b85decode	get-pip.py	/^    def b85decode(b):$/;"	kind:function	line:46
+bootstrap	get-pip.py	/^def bootstrap(tmpdir=None):$/;"	kind:function	line:80
+cert_path	get-pip.py	/^        cert_path = os.path.join(tmpdir, "cacert.pem")$/;"	kind:variable	line:166
+func_wrapper	__init__.py	/^    def func_wrapper():$/;"	kind:function	line:49
+get-pip.py	get-pip.py	1;"	kind:file	line:1
+implicit_setuptools	get-pip.py	/^        implicit_setuptools = False$/;"	kind:variable	line:106
+implicit_wheel	get-pip.py	/^        implicit_wheel = False$/;"	kind:variable	line:113
+index	__init__.py	/^def index():$/;"	kind:function	line:62
 init2.py	init2.py	1;"	kind:file	line:1
+iterbytes	get-pip.py	/^    def iterbytes(buf):$/;"	kind:function	line:37
+iterbytes	get-pip.py	/^    iterbytes = iter$/;"	kind:variable	line:35
+main	get-pip.py	/^def main():$/;"	kind:function	line:179
+notif	__init__.py	/^def notif():$/;"	kind:function	line:14
+parse_args	get-pip.py	/^        def parse_args(self, args):$/;"	kind:member	line:88
+rankings	__init__.py	/^def rankings():$/;"	kind:function	line:125
 rows	init2.py	/^rows = soup.findAll('tr', {'class': 'linescoreTeamRow'})$/;"	kind:variable	line:6
-schedule	__init__.py	/^def schedule():$/;"	kind:function	line:50
-socfunc	__init__.py	/^def socfunc(json):$/;"	kind:function	line:31
-socketio	__init__.py	/^socketio = SocketIO(app)$/;"	kind:variable	line:11
+schedule	__init__.py	/^def schedule():$/;"	kind:function	line:88
+set_interval	__init__.py	/^def set_interval(func, sec):$/;"	kind:function	line:48
+socfunc	__init__.py	/^def socfunc(json):$/;"	kind:function	line:68
+socketio	__init__.py	/^socketio = SocketIO(app)$/;"	kind:variable	line:45
 soup	init2.py	/^soup = BeautifulSoup(a.text, 'lxml')$/;"	kind:variable	line:4
